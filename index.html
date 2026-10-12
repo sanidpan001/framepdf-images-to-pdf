@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FramePDF — JPG & PNG to PDF Converter: Turn Images into a PDF Free Online</title>
+<meta name="description" content="Free image-to-PDF converter. Combine JPG, PNG and WebP photos into one PDF with page size, margin and fit controls, drag ordering and a quality slider.">
+<link rel="canonical" href="https://framepdf.fixoraa.tech/">
+<meta property="og:title" content="FramePDF — JPG & PNG to PDF Converter: Turn Images into a PDF Free Online">
+<meta property="og:description" content="Free image-to-PDF converter. Combine JPG, PNG and WebP photos into one PDF with page size, margin and fit controls, drag ordering and a quality slider.">
+<meta property="og:url" content="https://framepdf.fixoraa.tech/">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';</script>
+<style>
+:root{--pri:#0D9488;--acc:#F97316;--bgc:#F0FDF9}
+body{background:var(--bgc);font-family:'Segoe UI',system-ui,sans-serif}
+.pri{background:var(--pri)} .prit{color:var(--pri)}
+.btn{background:var(--pri);color:#fff;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:hover{opacity:.9} .btn2{background:var(--acc);color:#111;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:disabled,.btn2:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{border:1.5px solid #cbd5e1;border-radius:.55rem;padding:.55rem .7rem;width:100%;background:#fff;color:#0f172a}
+input[type=file]{padding:.45rem .6rem} input[type=range]{padding:0} input[type=checkbox],input[type=radio]{width:auto}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);border-color:transparent}
+label{font-size:.83rem;font-weight:600;display:block;margin-bottom:.3rem}
+.card{background:#fff;border-radius:1rem;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:1.4rem}
+article p{margin:.7rem 0;line-height:1.75;color:#334155}
+article h2{font-size:1.45rem;font-weight:800;margin:1.6rem 0 .4rem;color:#0f172a}
+.faq{background:#fff;border-radius:.7rem;padding:.9rem 1.1rem;margin:.55rem 0;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.faq summary{font-weight:700;cursor:pointer}
+table.dt{width:100%;border-collapse:collapse} table.dt th,table.dt td{border:1px solid #e2e8f0;padding:.45rem .6rem;text-align:left;font-size:.9rem}
+table.dt th{background:#f1f5f9}
+.drop{border:2px dashed #94a3b8;border-radius:.8rem;padding:1.1rem;text-align:center;background:#f8fafc}
+canvas.prev{max-width:100%;border:1px solid #e2e8f0;border-radius:.5rem;background:#fff}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "FramePDF", "url": "https://framepdf.fixoraa.tech/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free image-to-PDF converter. Combine JPG, PNG and WebP photos into one PDF with page size, margin and fit controls, drag ordering and a quality slider."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many images can I add to one PDF?", "acceptedAnswer": {"@type": "Answer", "text": "There is no fixed cap \u2014 dozens of images are fine on a typical device. For very large batches, build the PDF in groups and repeat; your browser's memory is the only practical limit."}}, {"@type": "Question", "name": "Will my image order be preserved?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Images appear in the list exactly as pages will appear in the PDF, and you can reorder them with the arrow buttons or remove any image before building."}}, {"@type": "Question", "name": "Which page size should I choose?", "acceptedAnswer": {"@type": "Answer", "text": "A4 for most of the world and for printing, US Letter in North America, and 'fit to image' when each photo should keep its own proportions, such as a photo record or album."}}, {"@type": "Question", "name": "Does converting reduce image quality?", "acceptedAnswer": {"@type": "Answer", "text": "Only as much as you choose. At the default 85 percent quality the difference is invisible for documents; lower values shrink the file for tight upload limits, and 100 percent keeps maximum fidelity."}}, {"@type": "Question", "name": "Are my images uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Conversion happens entirely in your browser. Your photos and documents never leave your device, making the tool safe for identity proofs and personal files."}}, {"@type": "Question", "name": "Can I use phone photos instead of scans?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely \u2014 that is one of the main uses. Photograph each page square-on in good light, order the photos, choose A4 with fit-whole-image, and the result reads like a proper scan."}}]}</script>
+</head>
+<body id="top">
+<header class="sticky top-0 z-40 shadow-md" style="background:#134E4A">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="text-xl font-extrabold tracking-tight" style="color:#F0FDF9">🖼 FramePDF</a>
+    <nav class="flex gap-5 text-sm font-semibold" style="color:#F0FDF9">
+      <a href="#top" class="hover:underline">Home</a>
+      <a href="https://fixoraa.tech" class="hover:underline">More Tools</a>
+    </nav>
+  </div>
+</header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl sm:text-4xl font-extrabold" style="color:#0f172a">Images to PDF Converter — JPG & PNG to PDF</h1>
+    <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Scanned pages, phone photos of documents, a folder of screenshots — FramePDF frames them into one clean PDF. Order the pages your way, choose A4, Letter or fit-to-image sizing, set margins, and download a single tidy document.</p>
+    <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-bold text-white pri">✓ Unlimited Free Usage — No Signup, No Watermark</span>
+    <p class="mt-2 text-xs text-slate-500">🔒 100% private: your file is processed entirely in your browser and never uploaded to any server.</p>
+  </div>
+  <div class="grid md:grid-cols-5 gap-6">
+  <div class="card md:col-span-2 space-y-3">
+    <div class="drop"><label>Your images (JPG, PNG, WebP — pick several)</label><input id="files" type="file" accept="image/*" multiple></div>
+    <div><label>Page size</label><select id="psize"><option value="a4">A4</option><option value="letter">US Letter</option><option value="fit">Fit to each image</option></select></div>
+    <div class="grid grid-cols-2 gap-3"><div><label>Margin (pt)</label><input id="margin" type="number" value="36"></div><div><label>Image quality %</label><input id="qual" type="number" value="85" min="30" max="100"></div></div>
+    <div><label>Fit mode</label><select id="fit"><option value="contain">Fit whole image (no cropping)</option><option value="cover">Fill page (may crop edges)</option></select></div>
+    <button class="btn w-full" id="go" onclick="run()">Create PDF</button>
+    <button class="btn2 w-full" id="dl" style="display:none">⬇ Download PDF</button>
+    <p id="status" class="text-sm font-semibold"></p>
+  </div>
+  <div class="card md:col-span-3">
+    <h3 class="font-bold mb-2">Page order (use ↑ ↓ to reorder)</h3>
+    <div id="list" class="space-y-2 text-sm text-slate-600">No images yet — choose two or more photos or scans and they will appear here in order, ready to rearrange before you build the PDF.</div>
+  </div></div>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<section class="mx-auto max-w-4xl px-4 sm:px-6 pb-6">
+  <article>
+  <h2>Why combine images into a PDF at all</h2>
+<p>A folder of loose images is a fragile way to send anything that matters. Attachments arrive out of order, mail apps rename them, one file goes missing, and the reader assembles your document like a puzzle. A single PDF fixes the order permanently, prints predictably, and is the format every office, portal and admissions desk on earth is built to receive. Whether it is photographs of a signed form, a set of receipts for reimbursement, or product shots for a client, one framed PDF reads as professional in a way twelve attachments never will.</p>
+<p>FramePDF exists for that everyday conversion, done properly. It does not just dump pictures onto pages: you control the page size, the margins, whether an image fits whole or fills the page, and the exact order pages appear in. Those small controls are the difference between a PDF that looks assembled by a person and one that looks generated by accident.</p>
+<h2>Page size, margins and fit — the three choices that matter</h2>
+<p>Page size decides how the document behaves in print. A4 is the world standard outside North America; Letter is its American counterpart; fit-to-image preserves each photo at its own proportions, ideal when the PDF is a photo record rather than a printable document. Margins matter more than people expect: printers cannot print to the very edge, so a modest margin guarantees nothing important is clipped when the file meets real paper, and it gives pages a calm, deliberate frame on screen too.</p>
+<p>Fit mode answers a different question. 'Fit whole image' never crops anything — the entire photo is always visible, with white space absorbing any proportion mismatch. Choose it for documents, forms and evidence, where a cropped edge could hide a signature or a number. 'Fill page' scales the image to cover the page completely, cropping overflow — the right choice for full-bleed photo pages and portfolios where white borders would spoil the effect. Knowing which job you are doing makes the choice obvious.</p>
+<h2>How to turn images into a PDF, step by step</h2>
+<p>Select all your images at once with the file picker — JPG, PNG and WebP all work, including phone photos and scans. They appear in the order list with thumbnails; use the arrow buttons to move any image earlier or later, and the cross to remove one you included by mistake. Take ten seconds here: page order is the one thing readers cannot fix for you, and it is far easier to correct now than after the PDF is built.</p>
+<p>Then set page size, margin, quality and fit, and press Create PDF. Quality is a size lever: 85 percent is visually indistinguishable from the original for documents while keeping the file lean; drop toward 60 if the PDF must squeeze under an upload cap, or rise toward 100 for a print archive. Your images are processed entirely in your browser — nothing is uploaded — and the finished PDF downloads as a single file ready to send.</p>
+<h2>Getting phone photos to behave</h2>
+<p>Phone cameras create two quiet problems for PDF building. The first is orientation: photos carry rotation instructions in their metadata, and naive converters ignore them, producing sideways pages. FramePDF draws each image the way your gallery displays it, so pages arrive upright. The second is sheer size — a modern phone photo can exceed ten megabytes. The quality slider quietly solves this, re-encoding each image so a twenty-photo document stays emailable instead of ballooning past attachment limits.</p>
+<p>For photographed documents, a moment of care before converting pays off: shoot square-on in good light, keep the whole page in frame, and let FramePDF's margins frame it cleanly on an A4 page. The result reads like a scan — which is precisely what the receiving office wants — without a scanner, an app upload, or your documents passing through a stranger's server.</p>
+<h2>Everyday jobs this tool quietly handles</h2>
+<p>Expense claims are the classic: photograph each receipt, order them chronologically, and submit one PDF the finance team can file without a chase-up email. Students use the same flow for handwritten assignments photographed page by page. Sellers combine product photos into a catalogue sheet; landlords assemble property photos into a single handover record; families turn a shoebox-worth of scanned memories into one shareable album that relatives can actually open.</p>
+<p>In each case the pattern is identical — many images, one story, one file. The PDF becomes the unit of sharing because it travels well: it opens on every device, survives forwarding, prints identically everywhere, and keeps its pages in the order you chose. Loose images do none of those things reliably, which is why the conversion is worth the thirty seconds it takes.</p>
+<h2>Privacy and practical limits</h2>
+<p>Because FramePDF runs entirely in your browser, the images you convert — identity documents, signed forms, family photos — never leave your device. There is no upload queue, no server copy, and nothing to delete afterwards. That also means the practical limit is your device's memory: a few dozen phone photos are effortless, while hundreds of very large images are better converted in batches, then combined if a single file is essential.</p>
+<p>One honest note about formats: the tool accepts the image types browsers read natively — JPG, PNG and WebP cover virtually every phone, camera and screenshot you will meet. Each image becomes one PDF page, embedded as an efficient JPEG at your chosen quality, which keeps output files compact and universally readable in any PDF viewer.</p>
+<h2>Tips for a cleaner result every time</h2>
+<p>Convert in the order you will read: decide the final sequence before you start clicking, because readers experience page order as narrative order, and a misplaced page reads like a missing one. If your images come from different sources — phone, scanner, screenshots — rename nothing and trust the thumbnail list; it shows exactly what the PDF will contain. For documents headed to an office printer, A4 with fit-whole-image and a 36-point margin is the combination that survives every printer's unprintable edge. For photo sets, fit-to-image with fill mode produces a borderless album feel. Finally, keep the built PDF and your source images in the same folder: six months later, when page three needs replacing, you will rebuild in one minute instead of starting archaeology.</p>
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq"><summary>How many images can I add to one PDF?</summary><p>There is no fixed cap — dozens of images are fine on a typical device. For very large batches, build the PDF in groups and repeat; your browser's memory is the only practical limit.</p></details>
+<details class="faq"><summary>Will my image order be preserved?</summary><p>Yes. Images appear in the list exactly as pages will appear in the PDF, and you can reorder them with the arrow buttons or remove any image before building.</p></details>
+<details class="faq"><summary>Which page size should I choose?</summary><p>A4 for most of the world and for printing, US Letter in North America, and 'fit to image' when each photo should keep its own proportions, such as a photo record or album.</p></details>
+<details class="faq"><summary>Does converting reduce image quality?</summary><p>Only as much as you choose. At the default 85 percent quality the difference is invisible for documents; lower values shrink the file for tight upload limits, and 100 percent keeps maximum fidelity.</p></details>
+<details class="faq"><summary>Are my images uploaded anywhere?</summary><p>No. Conversion happens entirely in your browser. Your photos and documents never leave your device, making the tool safe for identity proofs and personal files.</p></details>
+<details class="faq"><summary>Can I use phone photos instead of scans?</summary><p>Absolutely — that is one of the main uses. Photograph each page square-on in good light, order the photos, choose A4 with fit-whole-image, and the result reads like a proper scan.</p></details>
+  </article>
+</section>
+<footer class="mt-6 py-8" style="background:#134E4A;color:#F0FDF9">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 text-center text-sm">
+    <p class="font-bold text-base">FramePDF</p>
+    <p class="opacity-80 mt-1">Free image-to-PDF converter. Combine JPG, PNG and WebP photos into one PDF with page size, margin and fit controls, drag ordering and a quality slider.</p>
+    <p class="mt-2"><a href="#top" class="underline">Home</a> · <a href="https://fixoraa.tech" class="underline">More Tools</a></p>
+    <p class="fx-credit" style="text-align:center;font-size:12.5px;opacity:.62;margin:10px auto 2px;letter-spacing:.01em">Made by <a href="https://fixoraa.tech" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px">Fixoraa</a></p>
+  </div>
+</footer>
+<script>
+
+const $=id=>document.getElementById(id);
+function fmtBytes(b){if(b===0)return '0 B';const k=1024,s=['B','KB','MB','GB'];const i=Math.floor(Math.log(b)/Math.log(k));return (b/Math.pow(k,i)).toFixed(i?1:0)+' '+s[i];}
+function setStatus(m,ok){const el=$('status');if(!el)return;el.textContent=m;el.style.color=ok===false?'#dc2626':'inherit';}
+function download(bytes,name,type){const blob=bytes instanceof Blob?bytes:new Blob([bytes],{type:type||'application/pdf'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
+async function readFile(input){const f=input.files&&input.files[0];if(!f)throw new Error('Please choose a PDF file first.');return {file:f,buf:await f.arrayBuffer()};}
+function showDl(id,bytes,name){const b=$(id);b.style.display='inline-block';b.onclick=()=>download(bytes,name);}
+
+
+let items=[];
+$('files').addEventListener('change',async e=>{
+  items=[];
+  for(const f of e.target.files){
+    const url=URL.createObjectURL(f);
+    items.push({file:f,url});
+  }
+  drawList(); setStatus(items.length+' image(s) loaded.');
+});
+function drawList(){
+  $('list').innerHTML=items.length?items.map((it,i)=>'<div class="flex items-center gap-3 p-2 rounded-lg bg-slate-50"><img src="'+it.url+'" style="width:52px;height:52px;object-fit:cover;border-radius:6px"><span class="flex-1 font-semibold">'+(i+1)+'. '+it.file.name+' ('+fmtBytes(it.file.size)+')</span><button class="btn2" onclick="moveIt('+i+',-1)">↑</button><button class="btn2" onclick="moveIt('+i+',1)">↓</button><button class="btn2" onclick="delIt('+i+')">✕</button></div>').join(''):'No images yet.';
+}
+function moveIt(i,d){const j=i+d;if(j<0||j>=items.length)return;const t=items[i];items[i]=items[j];items[j]=t;drawList();}
+function delIt(i){items.splice(i,1);drawList();}
+async function run(){
+  if(!items.length){setStatus('Please choose at least one image first.',false);return;}
+  const btn=$('go'); btn.disabled=true;
+  try{
+    const doc=await PDFLib.PDFDocument.create();
+    const sizes={a4:[595.28,841.89],letter:[612,792]};
+    const margin=Math.max(0,parseFloat($('margin').value)||0), q=Math.min(100,Math.max(30,parseFloat($('qual').value)||85))/100;
+    for(let i=0;i<items.length;i++){
+      const it=items[i];
+      const img=new Image(); img.src=it.url; await img.decode();
+      const cv=document.createElement('canvas'); cv.width=img.naturalWidth; cv.height=img.naturalHeight;
+      cv.getContext('2d').drawImage(img,0,0);
+      const jpg=await (await fetch(cv.toDataURL('image/jpeg',q))).arrayBuffer();
+      const emb=await doc.embedJpg(jpg);
+      let pw,ph;
+      if($('psize').value==='fit'){ pw=emb.width; ph=emb.height; }
+      else { [pw,ph]=sizes[$('psize').value]; }
+      const page=doc.addPage([pw,ph]);
+      const aw=pw-margin*2, ah=ph-margin*2;
+      let dw,dh;
+      if($('fit').value==='cover'){ const s=Math.max(aw/emb.width,ah/emb.height); dw=emb.width*s; dh=emb.height*s; }
+      else { const s=Math.min(aw/emb.width,ah/emb.height); dw=emb.width*s; dh=emb.height*s; }
+      page.drawImage(emb,{x:(pw-dw)/2,y:(ph-dh)/2,width:dw,height:dh});
+      setStatus('Adding image '+(i+1)+' of '+items.length+'…');
+    }
+    const bytes=await doc.save();
+    showDl('dl',bytes,'images.pdf');
+    setStatus('Done ✔ PDF created with '+items.length+' page(s), '+fmtBytes(bytes.length)+'.');
+  }catch(e){ setStatus('⚠ '+(e.message||e),false); }
+  btn.disabled=false;
+}
+
+</script>
+</body>
+</html>
